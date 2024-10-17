@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Header from '@/components/Header'
 import SearchBar from '@/components/SearchBar'
 import BreakingNews from '@/components/BreakingNews'
+import Categories from '@/components/Categories'
 import { NewsDataType } from "@/types"
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -27,6 +28,10 @@ const Page = (props: Props) => {
     }
   }
 
+  const onCatChanged = (category: string) => {
+    console.log("Category:", category);
+  };
+
   useEffect(() => {
     getBreakingNews();
   }, []);
@@ -40,7 +45,7 @@ const Page = (props: Props) => {
       ) : (
         <BreakingNews newsList={breakingNews} />
       )}
-      
+      <Categories onCategoryChanged={onCatChanged} />
     </View>
   )
 }
